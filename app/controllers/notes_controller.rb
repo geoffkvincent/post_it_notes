@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  before_action :set_params, only [:show,]
   def index
     @notes = Note.all
   end
@@ -19,6 +20,10 @@ class NotesController < ApplicationController
   end
 
   private
+
+  def set_params
+    @note = Note.find(params[:id])
+  end
 
   
 end
