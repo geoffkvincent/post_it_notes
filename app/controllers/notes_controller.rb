@@ -8,9 +8,17 @@ class NotesController < ApplicationController
   end
 
   def new
+    @page = Note.new
   end
 
   def create
+    @page = Note.new(note_params)
+
+    if @page.save
+      redirect_to notes_path
+    else
+      render :new
+    end
   end
 
   def update
