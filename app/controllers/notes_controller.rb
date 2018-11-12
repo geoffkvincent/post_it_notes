@@ -8,13 +8,13 @@ class NotesController < ApplicationController
   end
 
   def new
-    @page = Note.new
+    @note = Note.new
   end
 
   def create
-    @page = Note.new(note_params)
+    @note = Note.new(note_params)
 
-    if @page.save
+    if @note.save
       redirect_to notes_path
     else
       render :new
@@ -31,6 +31,10 @@ class NotesController < ApplicationController
 
   def set_note
     @note = Note.find(params[:id])
+  end
+
+  def note_params
+    params.require(:note).permit(:title, :author, :body)
   end
 
   
